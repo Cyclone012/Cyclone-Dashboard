@@ -61,18 +61,18 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const navLinks = document.querySelectorAll(".nav_link");
 
-  // Function to toggle popup on touch events
   function togglePopup(event) {
     const popup = this.querySelector(".popup-text");
-    if (popup) {
-      popup.classList.toggle("show");
-      event.preventDefault(); // Prevent link navigation
+    if (popup && popup.classList.contains("show")) {
+      popup.classList.remove("show");
+    } else {
+      return true;
     }
+    event.preventDefault();
   }
 
-  // Add touch event listener to each navigation link
   navLinks.forEach((link) => {
-    link.addEventListener("click", togglePopup); // For tap event
-    link.addEventListener("touchstart", togglePopup); // For long press event
+    link.addEventListener("click", togglePopup);
+    link.addEventListener("touchstart", togglePopup);
   });
 });
