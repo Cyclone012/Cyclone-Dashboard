@@ -226,7 +226,7 @@ body {
 
 /* navbar */
 .nav_logo {
-  padding: 17px !important;
+  padding: 18px !important;
   color: var(--first-color) !important;
   border-bottom: 2px solid var(--background);
 }
