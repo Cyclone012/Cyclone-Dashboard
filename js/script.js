@@ -66,13 +66,21 @@ document.addEventListener("DOMContentLoaded", function () {
     if (popup && popup.classList.contains("show")) {
       popup.classList.remove("show");
     } else {
-      return true;
+      return true; // Allow default link behavior
     }
     event.preventDefault();
   }
 
+  function handleTouchStart(event) {
+    const touch = event.touches[0];
+    const link = document.elementFromPoint(touch.clientX, touch.clientY);
+    if (link && link.classList.contains("nav_link")) {
+      togglePopup.call(link, event);
+    }
+  }
+
   navLinks.forEach((link) => {
     link.addEventListener("click", togglePopup);
-    link.addEventListener("touchstart", togglePopup);
+    link.addEventListener("touchstart", handleTouchStart);
   });
 });
