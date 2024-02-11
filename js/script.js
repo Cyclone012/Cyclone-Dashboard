@@ -86,17 +86,26 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Handle Mobile Scoll
-window.addEventListener('scroll', function() {
-  const sidebar = document.querySelector('.sidebar');
-  const content = document.querySelector('.content');
-  const scrollY = window.scrollY || window.pageYOffset;
-  const sidebarTop = content.offsetTop;
+document.addEventListener('DOMContentLoaded', function () {
+  let startY = 0;
 
-  if (scrollY >= sidebarTop) {
-    sidebar.style.position = 'fixed';
-    sidebar.style.top = '0';
-  } else {
-    sidebar.style.position = 'absolute';
-    sidebar.style.top = 'initial';
+  function handleTouchStart(event) {
+    startY = event.touches[0].clientY;
   }
+
+  function handleTouchMove(event) {
+    const currentY = event.touches[0].clientY;
+    const scrollable = content.scrollHeight > content.clientHeight;
+    const isScrollingDown = currentY > startY;
+
+    if (scrollable && isScrollingDown && content.scrollTop === 0) {
+      event.preventDefault();
+    }
+
+    startY = currentY;
+  }
+
+  content.addEventListener('touchstart', handleTouchStart, false);
+  content.addEventListener('touchmove', handleTouchMove, false);
 });
+
