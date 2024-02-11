@@ -294,8 +294,7 @@ body {
   }
   .sidebar .nav_name,
   .sidebar .nav_logo-name {
-    opacity: 0;
-    pointer-events: none;
+    display: none;
   }
   .nav_link:hover .popup-text {
     opacity: 1;
