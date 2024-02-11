@@ -84,3 +84,19 @@ document.addEventListener("DOMContentLoaded", function () {
     link.addEventListener("touchstart", handleTouchStart);
   });
 });
+
+// Handle Mobile Scoll
+window.addEventListener('scroll', function() {
+  const sidebar = document.querySelector('.sidebar');
+  const content = document.querySelector('.content');
+  const scrollY = window.scrollY || window.pageYOffset;
+  const sidebarTop = content.offsetTop;
+
+  if (scrollY >= sidebarTop) {
+    sidebar.style.position = 'fixed';
+    sidebar.style.top = '0';
+  } else {
+    sidebar.style.position = 'absolute';
+    sidebar.style.top = 'initial';
+  }
+});
