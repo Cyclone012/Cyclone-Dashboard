@@ -321,40 +321,6 @@ body {
   left: 3rem;
 }
 
-@keyframes popup {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  60% {
-    transform: translateX(10px);
-  }
-}
-
-@media only screen and (max-width: 567px) {
-  .header {
-    padding: 1.51rem 0;
-  }
-  .sidebar {
-    width: 3.4rem;
-  }
-  .content {
-    margin-left: 3.4rem;
-  }
-  #toggle {
-    display: none;
-  }
-  .sidebar .nav_name,
-  .sidebar .nav_logo-name {
-    opacity: 0;
-    pointer-events: none;
-  }
-  .nav_link:hover .popup-text {
-    opacity: 1;
-    left: 3rem;
-  }
-}
-
 .collape .nav_link:hover .popup-text {
   opacity: 1;
   left: 3rem;
@@ -462,4 +428,42 @@ body {
 .hambuger-menu.open span:nth-child(6) {
   left: calc(50% - 5px);
   top: 23px;
+}
+
+.disable-scroll {
+  overflow: hidden;
+}
+
+@keyframes popup {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  60% {
+    transform: translateX(10px);
+  }
+}
+
+@media only screen and (max-width: 567px) {
+  .header {
+    padding: 1.51rem 0;
+  }
+  .sidebar {
+    width: 3.4rem;
+  }
+  .content {
+    margin-left: 3.4rem;
+  }
+  #toggle {
+    display: none;
+  }
+  .sidebar .nav_name,
+  .sidebar .nav_logo-name {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .nav_link:hover .popup-text {
+    opacity: 1;
+    left: 3rem;
+  }
 }

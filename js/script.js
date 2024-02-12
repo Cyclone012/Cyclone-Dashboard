@@ -2,6 +2,7 @@ const checkbox = document.getElementById("checkbox");
 const sidebar = document.querySelector(".sidebar");
 const content = document.querySelector(".content");
 const labelDarkLight = document.querySelector(".dark-light");
+const header = document.querySelector(".header");
 
 // Function to set the theme based on the checkbox state
 function setTheme() {
@@ -86,26 +87,34 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Handle Mobile Scoll
-document.addEventListener('DOMContentLoaded', function () {
-  let startY = 0;
+window.addEventListener("scroll", function () {
+  const sidebar = document.querySelector(".sidebar");
+  const content = document.querySelector(".content");
+  const scrollY = window.scrollY || window.pageYOffset;
+  const sidebarTop = content.offsetTop;
 
-  function handleTouchStart(event) {
-    startY = event.touches[0].clientY;
+  if (scrollY >= sidebarTop) {
+    sidebar.style.position = "fixed";
+    sidebar.style.top = "0";
+  } else {
+    sidebar.style.position = "absolute";
+    sidebar.style.top = "initial";
   }
-
-  function handleTouchMove(event) {
-    const currentY = event.touches[0].clientY;
-    const scrollable = content.scrollHeight > content.clientHeight;
-    const isScrollingDown = currentY > startY;
-
-    if (scrollable && isScrollingDown && content.scrollTop === 0) {
-      event.preventDefault();
-    }
-
-    startY = currentY;
-  }
-
-  content.addEventListener('touchstart', handleTouchStart, false);
-  content.addEventListener('touchmove', handleTouchMove, false);
 });
 
+// Function to disable scrolling
+function disableScroll() {
+  document.body.classList.add("disable-scroll");
+}
+
+// Function to enable scrolling
+function enableScroll() {
+  document.body.classList.remove("disable-scroll");
+}
+
+// Add event listeners to sidebar and header
+sidebar.addEventListener("mouseover", disableScroll);
+sidebar.addEventListener("mouseleave", enableScroll);
+
+header.addEventListener("mouseover", disableScroll);
+header.addEventListener("mouseleave", enableScroll);
